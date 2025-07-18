@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terima Kasih Asa!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            color: #ff6b6b;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .message {
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+            border: 3px dashed #ff6b6b;
+        }
+
+        .message p {
+            font-size: 1.4rem;
+            color: #5a3e36;
+            line-height: 1.6;
+        }
+
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #a1c4fd);
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s infinite;
+            border: 5px solid white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .fire {
+            position: absolute;
+            bottom: -20px;
+            width: 100px;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23FF5722" d="M50,15 C40,5 25,20 30,35 C20,40 25,55 35,50 C30,65 45,70 50,60 C55,70 70,65 65,50 C75,55 80,40 70,35 C75,20 60,5 50,15 Z"/></svg>') no-repeat;
+            background-size: contain;
+            animation: flicker 1s infinite alternate;
+        }
+
+        .fire-left {
+            left: 20%;
+        }
+
+        .fire-right {
+            right: 20%;
+        }
+
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 2rem;
+            color: #ff6b6b;
+            opacity: 0.7;
+            animation: float 8s linear infinite;
+        }
+
+        @keyframes float {
+            to {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 0.8; transform: scaleY(1); }
+            50% { opacity: 1; transform: scaleY(1.1); }
+        }
+
+        .button {
+            background: linear-gradient(to right, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.6);
+        }
+
+        .footer {
+            margin-top: 20px;
+            color: #5a3e36;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .message p { font-size: 1.2rem; }
+            .photo-frame { width: 150px; height: 150px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts-container"></div>
+
+    <div class="container">
+        <h1>Terima Kasih Asa! 🔥</h1>
+
+        <div class="photo-frame">
+            <img src="asa.jpg" alt="Foto Asa" class="photo" />
+            <div class="fire fire-left"></div>
+            <div class="fire fire-right"></div>
+        </div>
+
+        <div class="message">
+            <p>Makasih ya udah jaga streak api TikTok aku! Kamu keren banget! 😊🔥</p>
+        </div>
+
+        <button class="button" id="playButton">Putar Musik</button>
+
+        <div class="footer">
+            Streak aku tetap menyala berkat kamu! 🔥
+        </div>
+    </div>
+
+    <audio id="backgroundMusic" loop>
+        <source src="asa.mp3" type="audio/mpeg">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+
+    <script>
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts-container');
+            const heartCount = 30;
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.fontSize = (Math.random() * 2 + 1) + 'rem';
+                heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        const audio = document.getElementById('backgroundMusic');
+        const playButton = document.getElementById('playButton');
+        let isPlaying = false;
+
+        playButton.addEventListener('click', function() {
+            if (isPlaying) {
+                audio.pause();
+                playButton.textContent = 'Putar Musik';
+            } else {
+                audio.play();
+                playButton.textContent = 'Jeda Musik';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        function animateFire() {
+            const fires = document.querySelectorAll('.fire');
+            fires.forEach(fire => {
+                fire.style.animation = `flicker ${0.5 + Math.random() * 0.5}s infinite alternate`;
+            });
+            setTimeout(animateFire, 3000);
+        }
+
+        window.onload = function() {
+            createHearts();
+            animateFire();
+            document.body.addEventListener('click', function initAudio() {
+                if (!isPlaying) {
+                    audio.play().catch(e => console.log("Autoplay prevented"));
+                    playButton.textContent = 'Jeda Musik';
+                    isPlaying = true;
+                }
+                document.body.removeEventListener('click', initAudio);
+            });
+        };
+    </script>
+</body>
+</html>
